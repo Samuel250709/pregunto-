@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Me quieres?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #pregunta {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        #si, #no {
+            font-size: 72px; /* 2 veces más grande */
+            cursor: pointer;
+            padding: 20px; /* Aumenta el padding */
+            margin: 10px; /* Aumenta el margen */
+            transition: color 0.5s; /* Agrega una transición de color */
+        }
+
+        #si:hover, #no:hover {
+            color: white; /* Cambia el color al pasar el ratón */
+        }
+
+        #si {
+            color: green; /* Color verde para SI */
+        }
+
+        #no {
+            color: red; /* Color rojo para NO */
+        }
+
+        #respuesta {
+            display: none;
+            font-size: 36px;
+            color: green;
+            margin-top: 20px;
+        }
+
+        #corazon {
+            display: none;
+            font-size: 48px;
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="pregunta">¿Me quieres?</div>
+    <div id="si" onclick="mostrarRespuesta('¡Yo también!')">SI</div>
+    <div id="no" onmouseover="moverNo()" onmouseout="resetNo()">NO</div>
+    <div id="respuesta"></div>
+    <div id="corazon">♥</div>
+
+    <script>
+        var noMoved = false;
+
+        function mostrarRespuesta(respuesta) {
+            document.getElementById('pregunta').style.display = 'none';
+            document.getElementById('si').style.display = 'none';
+            document.getElementById('no').style.display = 'none';
+
+            document.getElementById('respuesta').innerHTML = respuesta;
+            document.getElementById('respuesta').style.display = 'block';
+
+            document.getElementById('corazon').style.display = 'block';
+        }
+
+        function moverNo() {
+            if (!noMoved) {
+                var windowHeight = window.innerHeight;
+                var windowWidth = window.innerWidth;
+
+                var randomX = Math.floor(Math.random() * (windowWidth - 100));
+                var randomY = Math.floor(Math.random() * (windowHeight - 30));
+
+                document.getElementById('no').style.marginLeft = randomX + 'px';
+                document.getElementById('no').style.marginTop = randomY + 'px';
+
+                noMoved = true;
+            }
+        }
+
+        function resetNo() {
+            noMoved = false;
+        }
+    </script>
+</body>
+
+</html>
